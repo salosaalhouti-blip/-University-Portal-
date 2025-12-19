@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('Course')
+@section('Contact')
 
 @section('content')
-    <h1 class="mb-3">Course Page</h1>
 
     
 @endsection
