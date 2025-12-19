@@ -1,0 +1,58 @@
+.btn{
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    position: relative;
+    gap: 8px;
+    display: inline-flex;
+    justify-content: center;
+    z-index: 1;
+}
+.btn-icon{ 
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;  
+         
+}
+.btn-add .btn-icon{
+    margin-bottom: 6px;
+    
+}
+.btn-edit .btn-icon,
+.btn-delete .btn-icon{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    transform: translateY(-50%);
+
+}
+
+.btn-add{
+    background-color: black!important;
+    color: white !important;
+
+}
+.btn-show{
+    background-color: #d0d5d5 !important;
+    color: #141313 !important;
+    border: 1px solid #d0d5d5;
+    border-radius: 4px !important;
+    align-items: center !important;
+}
+
+
+.btn-edit{
+    background-color: white !important;
+    border: 1px solid rgb(179, 172, 172) !important;
+    color: black !important;
+    width: 30px;
+    height: 30px;
+}
+
+.btn-delete{
+    background-color: rgb(214, 1, 1) !important;
+    color: white !important;
+    width: 30px;
+    height: 30px;
+}
