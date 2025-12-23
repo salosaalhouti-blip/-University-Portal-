@@ -32,7 +32,7 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" name="password" id="password" class="form-control" value="{{ old('password') }}" required>
         </div>
-    
+
           <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select name="status" required>

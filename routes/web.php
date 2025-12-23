@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', [homeController::class,'index'])->name('home.index');
+Route::get('/about', [homeController::class,'about'])->name('home.about');
+Route::get('/contact', [homeController::class,'contact'])->name('home.contact');
+
+Route::get('/adminLogin', [authController::class,'adminLogin'])->name('admin.login');
+Route::post('/adminLogin', [authController::class,'adminCheckLogin'])->name('admin.adminCheckLogin');
+
 
 
 Route::resource('student', studentController::class)->names([
@@ -66,11 +73,4 @@ Route::resource('enrollment', enrollmentController::class)->names([
 
 Route::get('dashboard', [dashboardcontroller::class,'index'])->name('dashboard');
 
-Route::get('/', [homeController::class,'index'])->name('home.index');
-Route::get('/about', [homeController::class,'about'])->name('home.about');
-Route::get('/contact', [homeController::class,'contact'])->name('home.contact');
-
-
-Route::get('/adminLogin', [authController::class,'adminLogin'])->name('admin.login');
-Route::post('/adminLogin', [authController::class,'adminCheckLogin'])->name('admin.adminCheckLogin');
 
