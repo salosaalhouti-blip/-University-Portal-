@@ -1,5 +1,5 @@
 .btn{
-    padding: 8px 16px;
+    padding: 4px 6px !important;
     cursor: pointer;
     border-radius: 6px;
     position: relative;
@@ -55,4 +55,7 @@
     color: white !important;
     width: 30px;
     height: 30px;
+}
+.btn-back-link{
+    color: rgb(0, 0, 0) !important;
 }

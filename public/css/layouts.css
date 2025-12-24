@@ -2,7 +2,9 @@
             height: 100%;
             margin:0;
             font-family: "Montserrat", sans-serif;
+            background-color: #f9f6f6 !important;
         }
+
         .navbar-bg{
             background-color: #2758f9ff;
         }

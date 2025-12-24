@@ -1,28 +1,66 @@
-@php 
-   $icons = [
-      'add'    => 'add',
-      'edit'   => 'edit',
-      'delete' => 'delete',
-     
-   ];
-   $icon = $icons[$type] ?? null;
+@props([
+    'type' => 'primary',   
+    'label' => null,       
+    'href' => null,        
+    'action' => null,      
+    'method' => 'POST',
+    'confirm' => null,    
+])
+
+@php
+    // Map type directly to icon
+    $icons = [
+        'back'   => 'arrow_back',
+        'edit'   => 'edit',
+        'delete' => 'delete',
+        'add'    => 'add',
+    ];
+    $iconName = $icons[$type] ?? null;
+
+
+    $iconOnly = in_array($type, ['back', 'edit', 'delete']);
 @endphp
-@if($type === 'delete' && isset($action))
-    <form action="{{ $action }}" method="POST" style="display:inline;">
+
+@if($type === 'delete' && $action)
+    <form action="{{ $action }}" method="POST" style="display:inline;" 
+    @if($confirm)
+      onSubmit="return confirm('Are you sure you want to delete')"
+    @endif
+      >
         @csrf
         @method('DELETE')
+
         <button type="submit" class="btn btn-{{ $type }}">
-            @if($icon)
-                <span class="material-symbols-outlined btn-icon">{{ $icon }}</span>
+            @if($iconOnly && $iconName)
+                <span class="material-symbols-outlined btn-icon">{{ $iconName }}</span>
+            @elseif($iconName)
+                <span class="material-symbols-outlined btn-icon">{{ $iconName }}</span>
+                <span>{{ $label }}</span>
+            @else
+                <span>{{ $label }}</span>
             @endif
-            <span>{{ $label ?: 'Delete' }}</span>
         </button>
     </form>
-@else
+@elseif($href)
     <a href="{{ $href }}" class="btn btn-{{ $type }}">
-        @if($icon)
-            <span class="material-symbols-outlined btn-icon">{{ $icon }}</span>
+        @if($iconOnly && $iconName)
+            <span class="material-symbols-outlined btn-icon">{{ $iconName }}</span>
+        @elseif($iconName)
+            <span class="material-symbols-outlined btn-icon">{{ $iconName }}</span>
+            <span>{{ $label }}</span>
+        @else
+            <span>{{ $label }}</span>
         @endif
-        <span>{{ $label }}</span>
     </a>
+@else
+    <button type="{{ $method === 'POST' ? 'submit' : 'button' }}" class="btn btn-{{ $type }}">
+        @if($iconOnly && $iconName)
+            <span class="material-symbols-outlined btn-icon">{{ $iconName }}</span>
+        @elseif($iconName)
+            <span class="material-symbols-outlined btn-icon">{{ $iconName }}</span>
+            <span>{{ $label }}</span>
+        @else
+            <span>{{ $label }}</span>
+        @endif
+    </button>
 @endif

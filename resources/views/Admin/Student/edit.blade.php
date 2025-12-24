@@ -3,6 +3,7 @@
 @section('Website', 'Edit Student')
 
 @section('content')
+<div class="border p-4 rounded bg-white">
     <h3 class="mb-4">Edit Student</h3>
 
     @if ($errors->any())
@@ -22,32 +23,32 @@
       
         <div class="mb-3">
             <label for="stNo" class="form-label">Student ID</label>
-            <input type="text" name="stNo" id="stNo" class="form-control" value="{{ old('stNo', $student->stNo) }}" required>
+            <input type="text" name="stNo" id="stNo" class="form-control bg-light" value="{{ old('stNo', $student->stNo) }}" required>
         </div>
 
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $student->name) }}" required>
+            <input type="text" name="name" id="name" class="form-control bg-light" value="{{ old('name', $student->name) }}" required>
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $student->email) }}"  required>
+            <input type="email" name="email" id="email" class="form-control bg-light" value="{{ old('email', $student->email) }}"  required>
         </div>
 
         <div class="mb-3">
             <label for="avg" class="form-label">GPA</label>
-            <input type="number" name="avg" id="avg" class="form-control" value="{{ old('avg', $student->avg) }}"  required>
+            <input type="number" name="avg" id="avg" class="form-control bg-light" value="{{ old('avg', $student->avg) }}"  required>
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="" >
+            <input type="password" name="password" id="password" class="form-control bg-light" placeholder="" >
         </div>
     
           <div class="mb-3">
             <label for="status" class="form-label">Status</label>
-            <select name="status" required>
+            <select name="status" class="bg-light" required>
       <option value="active" {{ old('status', $student->status) == 'active' ? 'selected' : '' }}>
         Active
     </option>
@@ -60,7 +61,8 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-dark">Update</button>
-        <a href="{{ route('student.index') }}" class="btn btn-secondary">Cancel</a>
+        <x-button type="dark" label="Update" />
+        <x-button type="secondary" label="Cancel" href="{{ route('student.index') }}" />
     </form>
+</div>
 @endsection

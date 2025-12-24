@@ -3,26 +3,21 @@
 @section('Student')
 
 @section('content')
-
-
-
-
- <h1 class="mb-3">Student Page</h1>
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3></h3>
-        <x-button type="add" label="Add Student" :href="route('student.create')" />
-    </div>
-
-    
+  
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
+<div class="table-responsive border p-4 rounded bg-white ">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Students</h3>
+        <x-button type="add" label="Add Student" :href="route('student.create')" />
+    </div>
 
-    <table class="table table-bordered">
+    <table class="table  table-hover">
         <thead>
-            <tr>
+            <tr class="border-bottom">
                 <th>Student ID</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -41,25 +36,26 @@
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->avg }}</td>
                     <td>{{ $student->status }}</td>
-                    <td class="d-flex gap-1" onClick="event.stopPropagation();">
+                    <td  onClick="event.stopPropagation();">
+                        <div class="d-flex gap-1">
 
                            <x-button 
                            type="edit" 
-                           label="" 
                            :href="route('student.edit', $student->id)" 
                             />
 
-                           <x-button 
-                           type="delete" 
-                           label="" 
-                          :action="route('student.destroy', $student->id)" 
-                           />
+                         <x-button 
+                         type="delete" 
+                         confirm="Are you sure you want to delete this student?"
+                         action="{{ route('student.destroy', $student->id) }}" />
+                       </div>
                     </td>
 
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection
 
 
