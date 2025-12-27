@@ -48,7 +48,7 @@
             </div>
             
             <div class="mt-4 pt-3 border-top">
-                <a href="{{ route('departments.index') }}" class="btn btn-secondary">
+                <a href="{{ route('department.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to List
                 </a>
                 <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-warning">
