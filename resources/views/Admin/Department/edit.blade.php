@@ -5,6 +5,27 @@
 @section('content')
 <div class="container-fluid px-4">
     
+    <!-- Success Message Display -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
+    <!-- Display ALL Validation Errors -->
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+            <h5>Please fix these errors:</h5>
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
     <h1 class="mt-4">Edit Department</h1>
     
     <div class="card mb-4">
@@ -27,11 +48,12 @@
                         @enderror
                     </div>
                     
+                    <!-- CHANGE: code → symbol -->
                     <div class="col-md-6">
-                        <label for="code" class="form-label">Department Code *</label>
-                        <input type="text" class="form-control @error('code') is-invalid @enderror" 
-                               id="code" name="code" value="{{ old('code', $department->code) }}" required>
-                        @error('code')
+                        <label for="symbol" class="form-label">Department Symbol *</label>
+                        <input type="text" class="form-control @error('symbol') is-invalid @enderror" 
+                               id="symbol" name="symbol" value="{{ old('symbol', $department->symbol) }}" required>
+                        @error('symbol')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

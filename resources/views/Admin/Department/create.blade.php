@@ -1,24 +1,80 @@
 @extends('layouts.app')
 
+@section('title', 'Add Department')
+
 @section('content')
-<div class="container">
-    <h1>Add Department</h1>
+<div class="container-fluid px-4">
     
-    <form action="{{ route('department.store') }}" method="POST">
-        @csrf
-        
-        <div class="mb-3">
-            <label>Name:</label>
-            <input type="text" name="name" class="form-control" required>
+    <!-- Success/Error Messages -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        
-        <div class="mb-3">
-            <label>Code:</label>
-            <input type="text" name="symbol" class="form-control" required>
+    @endif
+    
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+            <h5>Please fix these errors:</h5>
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        
-        <button type="submit" class="btn btn-primary">Create</button>
-        <a href="{{ route('department.index') }}" class="btn btn-secondary">Cancel</a>
-    </form>
+    @endif
+    
+    <h1 class="mt-4">Add New Department</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-plus-circle me-1"></i>
+            Add Department Information
+        </div>
+        <div class="card-body">
+            <form action="{{ route('department.store') }}" method="POST">
+                @csrf
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Department Name *</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                               id="name" name="name" value="{{ old('name') }}" required>
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="symbol" class="form-label">Department Symbol *</label>
+                        <input type="text" class="form-control @error('symbol') is-invalid @enderror" 
+                               id="symbol" name="symbol" value="{{ old('symbol') }}" required>
+                        @error('symbol')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" 
+                              id="description" name="description" rows="3">{{ old('description') }}</textarea>
+                    @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('department.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Create Department
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
