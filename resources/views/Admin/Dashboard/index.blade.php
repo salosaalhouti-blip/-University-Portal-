@@ -1,64 +1,131 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
-
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Welcome to University Portal</h1>
-    <p class="lead mb-5">Manage your university’s departments, students, courses, professors, and enrollments all in one place.</p>
-    
-    <div class="row">
-        <!-- Departments Card -->
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card text-center h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <div class="display-4 fw-bold text-primary mb-2">{{ $departments ?? 0 }}</div>
-                    <h5 class="card-title">Departments</h5>
-                    <a href="{{ route('department.index') }}" class="btn btn-outline-primary btn-sm mt-2">View All</a>
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h1 class="mb-1">Welcome to University Portal</h1>
+        <p class="text-muted">
+            Manage your university's departments, students, courses, professors, and enrollments all in one place.
+        </p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="row g-3">
+        <!-- Departments -->
+        <div class="col-md-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-muted mb-2">Departments</h6>
+                            <h2 class="fw-bold mb-0" style="font-size: 2rem;">
+                                {{ $departments ?? '0' }}
+                            </h2>
+                        </div>
+                        <div class="icon-wrapper bg-primary bg-opacity-10 p-2 rounded" style="width: 45px; height: 45px;">
+                            <i class="fas fa-building text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{{ route('department.index') }}" class="text-decoration-none small">
+                            View all <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Students Card -->
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card text-center h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <div class="display-4 fw-bold text-success mb-2">{{ $students ?? 0 }}</div>
-                    <h5 class="card-title">Students</h5>
-                    <a href="{{ route('student.index') }}" class="btn btn-outline-success btn-sm mt-2">View All</a>
+
+        <!-- Students -->
+        <div class="col-md-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-muted mb-2">Students</h6>
+                            <h2 class="fw-bold mb-0" style="font-size: 2rem;">
+                                {{ $students ?? '0' }}
+                            </h2>
+                        </div>
+                        <div class="icon-wrapper bg-success bg-opacity-10 p-2 rounded" style="width: 45px; height: 45px;">
+                            <i class="fas fa-users text-success"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{{ route('student.index') }}" class="text-decoration-none small">
+                            View all <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Courses Card -->
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card text-center h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <div class="display-4 fw-bold text-warning mb-2">{{ $courses ?? 0 }}</div>
-                    <h5 class="card-title">Courses</h5>
-                    <a href="{{ route('course.index') }}" class="btn btn-outline-warning btn-sm mt-2">View All</a>
+
+        <!-- Courses -->
+        <div class="col-md-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-muted mb-2">Courses</h6>
+                            <h2 class="fw-bold mb-0" style="font-size: 2rem;">
+                                {{ $courses ?? '0' }}
+                            </h2>
+                        </div>
+                        <div class="icon-wrapper bg-warning bg-opacity-10 p-2 rounded" style="width: 45px; height: 45px;">
+                            <i class="fas fa-book-open text-warning"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{{ route('course.index') }}" class="text-decoration-none small">
+                            View all <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Professors Card -->
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card text-center h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <div class="display-4 fw-bold text-info mb-2">{{ $professors ?? 0 }}</div>
-                    <h5 class="card-title">Professors</h5>
-                    <a href="{{ route('professor.index') }}" class="btn btn-outline-info btn-sm mt-2">View All</a>
+
+        <!-- Professors -->
+        <div class="col-md-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-muted mb-2">Professors</h6>
+                            <h2 class="fw-bold mb-0" style="font-size: 2rem;">
+                                {{ $professors ?? '0' }}
+                            </h2>
+                        </div>
+                        <div class="icon-wrapper bg-info bg-opacity-10 p-2 rounded" style="width: 45px; height: 45px;">
+                            <i class="fas fa-chalkboard-teacher text-info"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{{ route('professor.index') }}" class="text-decoration-none small">
+                            View all <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Enrollments Card -->
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card text-center h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <div class="display-4 fw-bold text-danger mb-2">{{ $enrollments ?? 0 }}</div>
-                    <h5 class="card-title">Enrollments</h5>
-                    <a href="{{ route('enrollment.index') }}" class="btn btn-outline-danger btn-sm mt-2">View All</a>
+
+        <!-- Enrollments -->
+        <div class="col-md-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-muted mb-2">Enrollments</h6>
+                            <h2 class="fw-bold mb-0" style="font-size: 2rem;">
+                                {{ $enrollment ?? '0' }}  <!-- Note: singular 'enrollment' -->
+                            </h2>
+                        </div>
+                       
+                    </div>
+                    <div class="mt-2">
+                        <a href="{{ route('enrollment.index') }}" class="text-decoration-none small">
+                            View all <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,20 +133,52 @@
 </div>
 
 <style>
-    .card {
-        border-radius: 12px;
-        transition: transform 0.3s;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
-    .display-4 {
-        font-size: 3.5rem;
-        font-weight: 700;
-    }
-    .lead {
-        font-size: 1.25rem;
-        color: #6c757d;
-    }
+.stat-card {
+    transition: transform 0.2s ease;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-purple {
+    background-color: #8B5CF6;
+}
+
+.text-purple {
+    color: #8B5CF6;
+}
+
+.fw-bold {
+    font-weight: 700;
+    color: #1F2937;
+}
+
+.text-muted {
+    color: #6B7280;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+h1 {
+    color: #1F2937;
+    font-weight: 600;
+    font-size: 1.75rem;
+}
+
+p.text-muted {
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
 </style>
 @endsection

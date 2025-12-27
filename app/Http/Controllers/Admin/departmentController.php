@@ -31,8 +31,8 @@ class departmentController extends Controller
     public function store(Request $request)
     {
         $input=$request->validate([
-            'name'=>['required','unique:departments,name'],
-            'symbol'=>['required']
+            'name' => ['required', 'unique:departments,name,'],
+            'symbol'=>['required'],
         ]);
         Department::create($input);
         return redirect()->route('department.index')->with('success','department is added successfully');
