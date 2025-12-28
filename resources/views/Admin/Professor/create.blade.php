@@ -84,10 +84,10 @@
 {{-- Using your x-button components --}}
                 <div class="d-flex gap-2 pt-2">
                     {{-- Submits form because no href is provided --}}
-                    <x-button type="primary" label="Save Professor Account" />
+                    <x-button type="dark" label="Save" />
                     
                     {{-- Links back to list because href is provided --}}
-                    <x-button type="back" label="Discard and Go Back" :href="route('professor.index')" />
+                    <x-button type="secondary" label="Cancel" :href="route('professor.index')" />
                 </div>
             </form>
         </div>

@@ -32,8 +32,8 @@
                         <td>{{ $professor->email }}</td>
                         <td>{{ $professor->department->name ?? 'N/A' }}</td>
                         <td class="text-center">
-                            <x-button type="edit" label="Edit" :href="route('professor.edit', $professor->id)" />
-                            <x-button type="delete" :action="route('professor.destroy', $professor->id)" confirm="true" />
+                            <x-button type="edit" label="" :href="route('professor.edit', $professor->id)" />
+                            <x-button type="delete" :action="route('professor.destroy', $professor->id)" confirm="Are you sure you want to delete this professor?" />
                         </td>
                     </tr>
                     @endforeach

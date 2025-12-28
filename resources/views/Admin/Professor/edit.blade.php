@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="d-flex gap-2 mt-4">
-                    <x-button type="primary" label="Save Changes" />
-                    <x-button type="back" label="Discard" :href="route('professor.index')" />
+                    <x-button type="dark" label="Update" />
+                    <x-button type="secondary" label="Cancel" :href="route('professor.index')" />
                 </div>
             </form>
         </div>
