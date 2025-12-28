@@ -103,7 +103,7 @@
                                 </h5>
                                 <p class="mb-0">
                                     123 University Avenue<br>
-                                    Academic City, AC 12345
+                                    Libyan City, baluon 12345
                                 </p>
                             </div>
                         </div>
@@ -114,8 +114,8 @@
                                     Contact Information
                                 </h5>
                                 <p class="mb-0">
-                                    <strong>Phone:</strong> (123) 456-7890<br>
-                                    <strong>Email:</strong> info@universityportal.edu
+                                    <strong>Phone:</strong> (+218) 919999999<br>
+                                    <strong>Email:</strong> info@limu.edu
                                 </p>
                             </div>
                         </div>
