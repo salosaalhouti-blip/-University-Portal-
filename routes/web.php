@@ -20,6 +20,8 @@ Route::get('/contact', function() {
 
 Route::get('/adminLogin', [authController::class,'adminLogin'])->name('admin.login');
 Route::post('/adminLogin', [authController::class,'adminCheckLogin'])->name('admin.adminCheckLogin');
+// Added logout route: Handles POST request to /logout, calls logout method, redirects to home page
+Route::post('/logout', [authController::class,'logout'])->name('admin.logout');
 
 
 

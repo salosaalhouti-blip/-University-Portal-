@@ -25,9 +25,25 @@
             <i class="bi bi-mortarboard"></i>
             University Portal
         </a>
-        <button class="btn btn-light d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
-            <i class="bi bi-list"></i>
-        </button>
+        <div class="d-flex align-items-center">
+            {{-- Added: Display admin name and logout button in navbar when admin is logged in --}}
+            @auth('admin')
+                {{-- Display admin's name with icon --}}
+                <span class="text-white me-3">
+                    <i class="bi bi-person-circle"></i> {{ Auth::guard('admin')->user()->name }}
+                </span>
+                {{-- Logout form: POST request to logout route, redirects to home page (guest page) --}}
+                <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </form>
+            @endauth
+            <button class="btn btn-light d-md-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
     </div>
 </nav>
 
