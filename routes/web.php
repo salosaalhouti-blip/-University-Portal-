@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\courseController;
-use App\Http\Controllers\Admin\dashboardcontroller;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\departmentController;
 use App\Http\Controllers\Admin\enrollmentController;
 use App\Http\Controllers\Admin\professorController;
@@ -72,6 +72,6 @@ Route::resource('enrollment', enrollmentController::class)->names([
     'destroy'=>'enrollment.destroy'
 ]);
 
-Route::get('dashboard', [dashboardcontroller::class,'index'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
 
 
