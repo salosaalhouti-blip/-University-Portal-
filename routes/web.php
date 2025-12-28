@@ -10,12 +10,13 @@ use App\Http\Controllers\Auth\authController;
 use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/', [homeController::class,'index'])->name('home.index');
-Route::get('/about', [homeController::class,'about'])->name('home.about');
-Route::get('/contact', [homeController::class,'contact'])->name('home.contact');
+Route::get('/about', function() {
+    return redirect(route('home.index') . '#about', 301);
+})->name('home.about');
+Route::get('/contact', function() {
+    return redirect(route('home.index') . '#contact', 301);
+})->name('home.contact');
 
 Route::get('/adminLogin', [authController::class,'adminLogin'])->name('admin.login');
 Route::post('/adminLogin', [authController::class,'adminCheckLogin'])->name('admin.adminCheckLogin');
