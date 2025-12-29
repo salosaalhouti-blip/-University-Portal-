@@ -1,45 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid px-4">
-    <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-        <h1>Professors List</h1>
-        <x-button type="add" label="Add New Professor" :href="route('professor.create')" />
-    </div>
-
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            @if(session('success'))
-                <div class="alert alert-success shadow-sm">{{ session('success') }}</div>
-            @endif
-
-            <table class="table table-hover align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>Professor Name</th>
-                        <th>Email Address</th>
-                        <th>Department</th>
-                        <th class="text-center">Manage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($professors as $professor)
-                    <tr>
-                        <td>
-                            {{-- We pass the name as the label for your component --}}
-                            <x-button type="primary" :label="$professor->name" :href="route('professor.show', $professor->id)" />
-                        </td>
-                        <td>{{ $professor->email }}</td>
-                        <td>{{ $professor->department->name ?? 'N/A' }}</td>
-                        <td class="text-center">
-                            <x-button type="edit" label="Edit" :href="route('professor.edit', $professor->id)" />
-                            <x-button type="delete" :action="route('professor.destroy', $professor->id)" confirm="true" />
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
+    @endif
+<div class="table-responsive border p-4 rounded bg-white ">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Professors</h3>
+        <x-button type="add" label="Add Professor" :href="route('professor.create')" />
     </div>
+
+    <table class="table  table-hover">
+        <thead>
+            <tr class="border-bottom">
+                <th>Professor Name</th>
+                <th>Email Address</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($professors as $professor)
+                <tr onClick="window.location='{{ route('professor.show', $professor->id )}}'"
+                    style="cursor: pointer;"
+                >
+                    <td>{{ $professor->name }}</td>
+                    <td>{{ $professor->email }}</td>
+                    <td>{{ $professor->department->name ?? 'N/A' }}</td>
+                    <td  onClick="event.stopPropagation();">
+                        <div class="d-flex gap-1">
+
+                           <x-button 
+                           type="edit" 
+                           :href="route('professor.edit', $professor->id)" 
+                            />
+
+                         <x-button 
+                         type="delete" 
+                         confirm="Are you sure you want to delete this professor?"
+                         action="{{ route('professor.destroy', $professor->id) }}" />
+                       </div>
+                    </td>
+
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

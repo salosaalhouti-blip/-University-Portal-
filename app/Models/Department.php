@@ -9,7 +9,8 @@ class Department extends Model
 
      protected $fillable = [
         'name',
-        'symbol'
+        'symbol',
+        'description'
     ];
 
     public function professores()

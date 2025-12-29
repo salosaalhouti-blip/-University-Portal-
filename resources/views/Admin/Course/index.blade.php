@@ -3,22 +3,20 @@
 @section('Website', 'Courses')
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3>Courses</h3>
-        <a href="{{ route('course.create') }}" class="btn btn-dark">
-            + Add Course
-        </a>
-    </div>
-
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
+<div class="table-responsive border p-4 rounded bg-white ">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Courses</h3>
+        <x-button type="add" label="Add Course" :href="route('course.create')" />
+    </div>
 
-    <table class="table table-bordered">
+    <table class="table  table-hover">
         <thead>
-            <tr>
+            <tr class="border-bottom">
                 <th>Name</th>
                 <th>Symbol</th>
                 <th>Unit</th>
@@ -27,29 +25,30 @@
         </thead>
         <tbody>
             @foreach($courses as $course)
-                <tr>
+                <tr onClick="window.location='{{ route('course.show', $course->id )}}'"
+                    style="cursor: pointer;"
+                >
                     <td>{{ $course->name }}</td>
                     <td>{{ $course->symbol }}</td>
                     <td>{{ $course->unit }}</td>
-                    <td>
-                        <a href="{{ route('course.show', $course->id) }}" class="btn btn-info btn-sm">
-                            View
-                        </a>
-                        <a href="{{ route('course.edit', $course->id) }}" class="btn btn-warning btn-sm">
-                            Edit
-                        </a>
-                        <form action="{{ route('course.destroy', $course->id) }}" 
-                              method="POST" 
-                              style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                Delete
-                            </button>
-                        </form>
+                    <td  onClick="event.stopPropagation();">
+                        <div class="d-flex gap-1">
+
+                           <x-button 
+                           type="edit" 
+                           :href="route('course.edit', $course->id)" 
+                            />
+
+                         <x-button 
+                         type="delete" 
+                         confirm="Are you sure you want to delete this course?"
+                         action="{{ route('course.destroy', $course->id) }}" />
+                       </div>
                     </td>
+
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection

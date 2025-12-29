@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="mark" class="form-label">Mark (Optional)</label>
+                    <label for="mark" class="form-label">Mark </label>
                     <input type="number" class="form-control" id="mark" 
                            name="mark" value="{{ old('mark') }}" 
                            min="0" max="100" step="0.1"

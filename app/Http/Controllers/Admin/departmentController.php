@@ -32,7 +32,8 @@ class departmentController extends Controller
     {
         $input=$request->validate([
             'name'=>['required','unique:departments,name'],
-            'symbol'=>['required']
+            'symbol'=>['required'],
+            'description'=>['nullable']
         ]);
         Department::create($input);
         return redirect()->route('department.index')->with('success','department is added successfully');
@@ -60,8 +61,9 @@ class departmentController extends Controller
     public function update(Request $request, Department $department)
     {
         $input=$request->validate([
-            'name'=>['required','unique:departments,name'],
-            'symbol'=>['required']
+            'name'=>['required','unique:departments,name,' . $department->id],
+            'symbol'=>['required'],
+            'description'=>['nullable']
         ]);
         $department->update($input);
         return redirect()->route('department.index')->with('success','department is updated successfully');

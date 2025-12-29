@@ -21,10 +21,10 @@
 
 <nav class="navbar navbar-expand-md navbar-dark navbar-bg p-2">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold fs-3" href="{{ route('home.index') }}">
+        <a class="navbar-brand fw-bold fs-3" href="{{ Auth::guard('admin')->check() ? route('dashboard') : route('home.index') }}">
             <i class="bi bi-mortarboard"></i>
             University Portal
-        </a>
+        </a> 
         <div class="d-flex align-items-center">
             {{-- Added: Display admin name and logout button in navbar when admin is logged in --}}
             @auth('admin')
